@@ -18,4 +18,5 @@ class InMemoryFeatureFlags implements FeatureFlagsInterface
     {
         return isset($this->flags[$flag]) ? $this->flags[$flag] : false;
     }
+
 }

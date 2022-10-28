@@ -11,5 +11,10 @@ $initialFlags = require __DIR__ . '/../src/Flags.php';
 //$featureFlags = new InMemoryFeatureFlags($envOverrider->overrideFlags($initialFlags));
 //FeatureFlag::setFeatureFlags($featureFlags);
 
+$initialFlags = require __DIR__ . '/../src/Flags.php';
+$envOverrider = new EnvOverrider();
+$featureFlags = new InMemoryFeatureFlags($envOverrider->overrideFlags($initialFlags));
+FeatureFlag::setFeatureFlags($featureFlags);
+
 $app = new \Tbd\Main\Application();
 $app->run();

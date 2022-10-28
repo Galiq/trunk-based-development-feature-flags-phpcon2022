@@ -5,4 +5,5 @@ interface FeatureFlagsInterface
 {
     public function setEnabled(string $flag, bool $enabled = true) : void;
     public function isEnabled(string $flag) : bool;
+
 }

@@ -18,4 +18,5 @@ class FeatureFlag
         }
         return false;
     }
+
 }
