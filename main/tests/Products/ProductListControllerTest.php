@@ -50,7 +50,7 @@ class ProductListControllerTest extends TestCase
 
     public function testControllerReturnsValidResponseWithDetailsEnabled()
     {
-        if(!FeatureFlag::isEnabled('show_product_details_on_list')){
+        if(FeatureFlag::isEnabled('show_product_details_on_list')){
             $this->markTestSkipped("Flag show_product_details_on_list is disabled");
         }
 
