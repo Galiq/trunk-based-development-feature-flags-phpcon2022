@@ -1,3 +1,5 @@
+https://workshop-phpcon22.featureflags.pl/zad2-obsluga-feature-flag/#3-implementacja-rozwiazania
+
 # Trunk Based Development - Feature Flags Workshop - PHPCon 2022
 
 W ramach warsztatu będziemy pracować z prostą aplikacją.
