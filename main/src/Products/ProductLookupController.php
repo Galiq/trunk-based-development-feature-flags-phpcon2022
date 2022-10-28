@@ -8,7 +8,7 @@ use React\Http\Message\Response;
 class ProductLookupController
 {
     private $repository;
-    
+
     public function __construct(ProductRepositoryInterface $repository)
     {
         $this->repository = $repository;
