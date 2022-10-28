@@ -2,6 +2,7 @@
 
 namespace Tbd\Main\Tests\Products;
 
+use Tbd\Main\FeatureFlags\FeatureFlag;
 use Tbd\Main\Products\Product;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -11,7 +12,7 @@ use Tbd\Main\Products\ProductsListController;
 
 class ProductListControllerTest extends TestCase
 {
-    public function testControllerReturnsValidResponse()
+    public function testControllerReturnsValidResponseWithDetailsDisabled()
     {
         $request = new ServerRequest('GET', 'http://example.com/products/');
 
@@ -25,12 +26,14 @@ class ProductListControllerTest extends TestCase
         $controller = new ProductsListController($stub);
 
         $response = $controller($request);
-
+        if (FeatureFlag::isEnabled('show_product_details_on_list')) {
+            $this->markTestSkipped("Flag show_product_details_on_list is enabled");
+        }
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('application/json', $response->getHeaderLine('Content-Type'));
 
-        $output='[
+        $output = '[
     {
         "id": 1,
         "name": "test"
@@ -40,7 +43,7 @@ class ProductListControllerTest extends TestCase
         "name": "test2"
     }
 ]';
-        $this->assertEquals($output, (string) trim($response->getBody()));
+        $this->assertEquals($output, (string)trim($response->getBody()));
     }
 
     public function testControllerReturnsEmptyResponse()
@@ -59,7 +62,7 @@ class ProductListControllerTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('application/json', $response->getHeaderLine('Content-Type'));
 
-        $output='[]';
-        $this->assertEquals($output, (string) trim($response->getBody()));
+        $output = '[]';
+        $this->assertEquals($output, (string)trim($response->getBody()));
     }
 }
