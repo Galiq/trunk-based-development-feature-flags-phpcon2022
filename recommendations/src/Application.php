@@ -25,7 +25,6 @@ class Application
         $this->app = new App($container);
         $this->app->post('/impression/{id}',  Recommendations\ProductImpressionCreateController::class);
         $this->app->get('/recommendations/{id}', Recommendations\RecommendationsLookupController::class);
-
         $this->app->get('/', function () {
             return Response::plaintext(
                 "Hello recommendations!\n"

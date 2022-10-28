@@ -19,7 +19,6 @@ class ProductLookupWithRecommendationsDataProvider implements ProductLookupDataP
     public function getData(Product $product): array
     {
         $recommendations = $this->service->getRecommendations($product->id);
-
         $data = [
             "name" => $product->title,
             "description" => $product->description,

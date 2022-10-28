@@ -11,7 +11,9 @@ class ProductLookupDataProviderAbstraction implements ProductLookupDataProviderI
 
     public function __construct(){
         if(FeatureFlag::isEnabled('show_recommendations_on_product_lookup')){
-
+            $address = getenv('RECOMMENDATIONS_SERVICE_URL');
+            $service = new RecommendationsService($address);
+            $this->implementation = new ProductLookupWithRecommendationsDataProvider($service);
         }else {
             $this->implementation = new ProductLookupStandardDataProvider();
         }
